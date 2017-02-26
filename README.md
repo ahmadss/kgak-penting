@@ -1,4 +1,35 @@
 
+Menggunakan Intent
+
+Memanggil Intent
+Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+intent.putExtra("pertama","activity pertama");
+startActivityForResult(intent, REQUEST_CODE);
+
+Mendapatkan nilai intent
+Intent intent = getIntent.getExtras();
+String username = intent.getString("pertama");
+
+ResultIntent
+static final int REQUEST_CODE = 1;
+startActivityForResult(intent, REQUEST_CODE);
+
+@Override
+protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+if (requestCode == REQUEST_CODE){
+    if (resultCode == RESULT_OK){
+        String result = data.getStringExtra("returnData");
+        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+        }
+    }
+}
+
+Intent retIntent = getIntent();
+retIntent.putExtra("returnData","From Second Activity");
+retIntent.putExtra("somethingselse", "This is something else");
+setResult(RESULT_OK, retIntent);
+finish();
+
 Menggunakan SharedPreferences
 
 MODE _PRIVATE: mode normal, dimana SharedPreferences hanya bisa diakses dari aplikasi tempat ia di deklarasi saja.
